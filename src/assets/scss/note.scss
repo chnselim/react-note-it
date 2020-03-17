@@ -1,0 +1,63 @@
+.note-container {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: calc(100% - 40px);
+  height: calc(100% - 40px);
+  display: flex;
+  background: #f3f3f3;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  border-radius: 2px;
+
+  .list {
+    border-right: 1px solid #dedede;
+    min-width: 225px;
+
+    .search {
+      display: flex;
+      padding: 20px;
+      border-bottom: 1px solid #dedede;
+
+      input {
+        margin-right: 5px;
+        border: none;
+      }
+
+      button {
+        border: 1px solid #dedede;
+      }
+    }
+
+    .note {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 10px 20px 10px 24px;
+      height: 90px;
+      border-bottom: 1px solid #dedede;
+      cursor: pointer;
+
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.015);
+      }
+
+      &.active {
+        border-left: 4px solid #e6c20a;
+        padding-left: 20px !important;
+
+        &:hover {
+          background-color: #f3f3f3;
+        }
+      }
+
+    }
+  }
+
+  .content {
+    width: 100%;
+    padding: 25px 40px;
+  }
+}
