@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Note from '../components/Note';
+import Content from '../components/Content';
 import { useSelector } from 'react-redux';
 
 export default function Home() {
@@ -45,7 +46,7 @@ export default function Home() {
         {
           !selectedNote
             ? <h5 className='mt-5 text-center'>No note choosed.</h5>
-            : <div><h4>{selectedNote.title}</h4> <p>{selectedNote.content}</p></div>
+            : <Content note={selectedNote} />
         }
       </div>
 

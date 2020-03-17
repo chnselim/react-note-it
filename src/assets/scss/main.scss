@@ -34,3 +34,31 @@ input, button {
     box-shadow: none !important;
   }
 }
+
+.scrollY {
+  overflow-y: scroll;
+  height: 100%;
+}
+
+// Scroll
+
+/* width */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 2px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: transparent;
+  border-radius: 2px;
+
+  &:hover {
+    background: $primary-text-color;
+  }
+}
