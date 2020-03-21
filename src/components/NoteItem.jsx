@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 
-export default function Note(props) {
+export default function NoteItem(props) {
   const { item, isActive, handleOnNoteClick } = props;
 
   return (
@@ -11,12 +11,12 @@ export default function Note(props) {
       onClick={() => handleOnNoteClick(item)}
     >
       <span>{moment(item.createdAt).format('DD MMM YYYY - HH:mm:ss')}</span>
-      <h5>{item.title}</h5>
+      <h5 className='mb-0'>{item.title}</h5>
     </div>
   );
 }
 
-Note.propTypes = {
+NoteItem.propTypes = {
   item: PropTypes.object,
   isActive: PropTypes.bool,
   handleOnNoteClick: PropTypes.func,

@@ -16,6 +16,20 @@ span {
   color: $secondary-text-color;
 }
 
+input {
+  border: 1px solid #dedede !important;
+}
+
+button {
+  background: white !important;
+  border: 1px solid #ffffff;
+
+  &:hover {
+    border: 1px solid #dedede !important;
+  }
+
+}
+
 ::-webkit-input-placeholder {
   color: #575757 !important;
 }
@@ -37,7 +51,7 @@ input, button {
 
 .scrollY {
   overflow-y: scroll;
-  height: 100%;
+  height: calc(100% - 25px);
 }
 
 // Scroll

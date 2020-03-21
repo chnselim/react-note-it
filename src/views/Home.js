@@ -1,55 +1,31 @@
-import React, { useState } from 'react';
-import Note from '../components/Note';
-import Content from '../components/Content';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import NotePreview from '../components/NotePreview';
+import Sidebar from '../components/Sidebar';
 
 export default function Home() {
   const state = useSelector(state => state.note);
   const [selectedNote, setSelectedNote] = useState(null);
 
+  useEffect(() => {
+    setSelectedNote(state.notes[0]);
+  }, []);
+
   function getNoteDetail(note) {
     setSelectedNote(note);
-    console.log(note);
   }
 
-  function filterNotes(e) {
-    console.log(e.target.value);
-  }
   return (
-    <div className='note-container'>
+    <section>
 
-      <div className='list'>
+      <Sidebar
+        notes={state.notes}
+        selectedNote={selectedNote}
+        handleOnNoteClick={(item) => getNoteDetail(item)}
+      />
 
-        <div className='search'>
-          <input
-            className='form-control form-control-sm' placeholder='Search'
-            onKeyUp={filterNotes}
-          />
-          <button className='btn btn-sm'>New</button>
-        </div>
+      <NotePreview note={selectedNote} />
 
-        {
-          state.notes.map(note => {
-            return (
-              <Note
-                key={note.id}
-                item={note}
-                isActive={note.id === selectedNote?.id}
-                handleOnNoteClick={(item) => getNoteDetail(item)}
-              />
-            );
-          })
-        }
-      </div>
-
-      <div className='content'>
-        {
-          !selectedNote
-            ? <h5 className='mt-5 text-center'>No note choosed.</h5>
-            : <Content note={selectedNote} />
-        }
-      </div>
-
-    </div>
+    </section>
   );
 }

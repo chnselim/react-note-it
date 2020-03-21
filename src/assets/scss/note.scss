@@ -1,51 +1,66 @@
-.note-container {
+section {
   position: fixed;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
   margin: auto;
-  width: calc(100% - 40px);
-  height: calc(100% - 40px);
+  width: calc(100% - 32px);
+  height: calc(100% - 32px);
   display: flex;
   background: #f3f3f3;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
   border-radius: 2px;
 
   .list {
     border-right: 1px solid #dedede;
-    min-width: 225px;
+    width: 275px;
+    transition: all .5s;
+    position: relative;
 
-    .search {
+    .header-area, .footer-area {
+      position: relative;
       display: flex;
       padding: 20px;
+      background: #f3f3f3;
+    }
+
+    .header-area {
       border-bottom: 1px solid #dedede;
 
-      input {
-        margin-right: 5px;
-        border: none;
+      .collapse-btn {
+        position: absolute;
+        left: -20px;
+        top: 0;
+        bottom: 0;
+        margin: auto;
       }
 
-      button {
-        border: 1px solid #dedede;
-      }
+    }
+
+    .footer-area {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      border-top: 1px solid #dedede;
     }
 
     .note {
       display: flex;
       flex-direction: column;
       justify-content: center;
-      padding: 10px 20px 10px 24px;
+      padding: 10px 20px 10px 25px;
       height: 90px;
       border-bottom: 1px solid #dedede;
       cursor: pointer;
 
       &:hover {
-        background-color: rgba(0, 0, 0, 0.015);
+        background-color: rgba(253, 184, 79, 0.06);
       }
 
       &.active {
-        border-left: 4px solid #e6c20a;
+        border-left: 5px solid #fdb84f;
         padding-left: 20px !important;
 
         &:hover {
@@ -54,10 +69,15 @@
       }
 
     }
-  }
 
-  .content {
-    width: 100%;
-    padding: 25px 40px;
+    &.collapsed {
+      width: 0;
+      transition: all .5s;
+
+      .header-area, .footer-area, .note {
+        display: none;
+      }
+    }
+
   }
 }
