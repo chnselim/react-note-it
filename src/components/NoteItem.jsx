@@ -10,7 +10,7 @@ export default function NoteItem(props) {
       className={`note ${isActive ? 'active' : ''}`}
       onClick={() => handleOnNoteClick(item)}
     >
-      <span>{moment(item.createdAt).format('DD MMM YYYY - HH:mm:ss')}</span>
+      <span>{moment(item.createdAt).format('DD MMM - HH:mm:ss')}</span>
       <h5 className='mb-0'>{item.title}</h5>
     </div>
   );

@@ -7,8 +7,15 @@
   border-bottom: 1px solid #dedede;
   cursor: pointer;
 
+  h5 {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 220px;
+  }
+
   &:hover {
-    background-color: rgba(253, 184, 79, 0.06);
+    background-color: #f3f3f3;
   }
 
   &.active {
@@ -16,7 +23,7 @@
     padding-left: 20px !important;
 
     &:hover {
-      background-color: #f3f3f3;
+      background-color: #f9f9f9;
     }
   }
 

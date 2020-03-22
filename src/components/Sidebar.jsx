@@ -23,7 +23,7 @@ export default function Sidebar(props) {
       <div className='header'>
         <input
           className='form-control form-control-sm'
-          placeholder='Search by title'
+          placeholder='Search'
           onKeyUp={(e) => setSearchText(e.target.value)}
         />
       </div>

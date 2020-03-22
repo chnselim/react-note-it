@@ -14,7 +14,6 @@ export default function NotePreview(props) {
         title: e.target.value,
       },
     });
-    dispatch({ type: 'SELECT', note: note });
   }
 
   function editNoteContent(e) {
@@ -25,7 +24,6 @@ export default function NotePreview(props) {
         content: e.target.value,
       },
     });
-    dispatch({ type: 'SELECT', note: note });
   }
 
   return (
@@ -38,6 +36,7 @@ export default function NotePreview(props) {
                 className='preview-input'
                 type='text'
                 value={note.title}
+                placeholder='TITLE HERE'
                 onChange={editNoteTitle}
               />
               <textarea
