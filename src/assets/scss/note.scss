@@ -1,83 +1,50 @@
-section {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin: auto;
-  width: calc(100% - 32px);
-  height: calc(100% - 32px);
+.note {
   display: flex;
-  background: #f3f3f3;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-  border-radius: 2px;
+  flex-direction: column;
+  justify-content: center;
+  padding: 10px 20px 10px 24px;
+  height: 90px;
+  border-bottom: 1px solid #dedede;
+  cursor: pointer;
 
-  .list {
-    border-right: 1px solid #dedede;
-    width: 275px;
-    transition: all .5s;
-    position: relative;
+  &:hover {
+    background-color: rgba(253, 184, 79, 0.06);
+  }
 
-    .header-area, .footer-area {
-      position: relative;
-      display: flex;
-      padding: 20px;
-      background: #f3f3f3;
+  &.active {
+    border-left: 4px solid #fdb84f;
+    padding-left: 20px !important;
+
+    &:hover {
+      background-color: #f3f3f3;
     }
+  }
 
-    .header-area {
-      border-bottom: 1px solid #dedede;
+}
 
-      .collapse-btn {
-        position: absolute;
-        left: -20px;
-        top: 0;
-        bottom: 0;
-        margin: auto;
-      }
+.preview {
+  display: flex;
+  width: 100%;
+  padding: 25px 40px;
 
+  input, textarea {
+    background: transparent;
+    border: none !important;
+    width: 100%;
+
+    &:focus {
+      outline: none;
+      box-shadow: none;
     }
+  }
 
-    .footer-area {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      border-top: 1px solid #dedede;
-    }
+  input {
+    font-size: 18px;
+    font-weight: 600;
+  }
 
-    .note {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 10px 20px 10px 25px;
-      height: 90px;
-      border-bottom: 1px solid #dedede;
-      cursor: pointer;
-
-      &:hover {
-        background-color: rgba(253, 184, 79, 0.06);
-      }
-
-      &.active {
-        border-left: 5px solid #fdb84f;
-        padding-left: 20px !important;
-
-        &:hover {
-          background-color: #f3f3f3;
-        }
-      }
-
-    }
-
-    &.collapsed {
-      width: 0;
-      transition: all .5s;
-
-      .header-area, .footer-area, .note {
-        display: none;
-      }
-    }
-
+  textarea {
+    font-size: 15px;
+    min-height: calc(100% - 25px) !important;
   }
 }

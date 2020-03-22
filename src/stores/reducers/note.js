@@ -1,3 +1,5 @@
+import { v4 as uuidv4 } from 'uuid';
+
 const initialNotes = [
   {
     id: '1',
@@ -39,12 +41,35 @@ const initialNotes = [
 
 const initialState = {
   notes: initialNotes,
+  selectedNote: initialNotes[0],
 };
 
 export default function note(state = initialState, action) {
   switch (action.type) {
     case 'ADD': {
+      return {
+        ...state,
+        notes: [
+          {
+            id: uuidv4(),
+            title: '',
+            content: '',
+            createdAt: Date.now(),
+            updatedAt: Date.now(),
+          },
+          ...state.notes,
+        ],
+      };
+    }
+    case 'EDIT': {
+      state.notes[state.notes.findIndex(note => note.id === action.note.id)] = action.note;
       return { ...state };
+    }
+    case 'SELECT': {
+      return {
+        ...state,
+        selectedNote: state.notes.find(note => note.id === action.note.id),
+      };
     }
     default:
       return state;

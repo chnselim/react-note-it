@@ -1,14 +1,14 @@
 @import url('https://fonts.googleapis.com/css?family=Sen:400,700&display=swap');
 @import 'assets/scss/variables';
 @import 'assets/scss/main';
+@import 'assets/scss/sidebar';
 @import 'assets/scss/note';
-@import 'assets/scss/content';
 
 body {
   font-family: 'Sen', sans-serif;
   margin: 0;
   padding: 0;
   // todo ... theme maybe
-  background: #607ed8;
+  background: #abc4ff;
   color: $primary-text-color;
 }

@@ -1,0 +1,43 @@
+.sidebar {
+  border-right: 1px solid #dedede;
+  width: 275px;
+  transition: all .5s;
+  position: relative;
+
+  .header, .footer {
+    position: relative;
+    display: flex;
+    padding: 20px;
+  }
+
+  .header {
+    border-bottom: 1px solid #dedede;
+
+    .collapse-btn {
+      position: absolute;
+      left: -20px;
+      top: 0;
+      bottom: 0;
+      margin: auto;
+    }
+
+  }
+
+  .footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-top: 1px solid #dedede;
+  }
+
+  &.collapsed {
+    width: 0;
+    transition: all .5s;
+
+    .header, .footer, .note {
+      display: none;
+    }
+  }
+
+}
