@@ -4,15 +4,19 @@ import { useDispatch } from 'react-redux';
 
 export default function NotePreview(props) {
   const dispatch = useDispatch();
-  const { note } = props;
+  const { selectedNote } = props;
 
   function editNoteTitle(e) {
     dispatch({
       type: 'EDIT',
       note: {
-        ...note,
+        ...selectedNote,
         title: e.target.value,
       },
+    });
+    dispatch({
+      type: 'SELECT',
+      note: selectedNote,
     });
   }
 
@@ -20,27 +24,33 @@ export default function NotePreview(props) {
     dispatch({
       type: 'EDIT',
       note: {
-        ...note,
+        ...selectedNote,
         content: e.target.value,
       },
+    });
+    dispatch({
+      type: 'SELECT',
+      note: selectedNote,
     });
   }
 
   return (
     <div className='preview'>
       {
-        note
+        selectedNote
           ? (
             <div className='w-100'>
               <input
+                id='activeInputTitle'
                 className='preview-input'
                 type='text'
-                value={note.title}
-                placeholder='TITLE HERE'
+                value={selectedNote.title}
+                placeholder='Title Here'
                 onChange={editNoteTitle}
               />
               <textarea
-                value={note.content}
+                value={selectedNote.content}
+                placeholder='Content here'
                 onChange={editNoteContent}
               />
             </div>
@@ -52,5 +62,5 @@ export default function NotePreview(props) {
 }
 
 NotePreview.propTypes = {
-  note: PropTypes.object,
+  selectedNote: PropTypes.object,
 };

@@ -14,7 +14,9 @@ export default function Home() {
         selectedNote={state.selectedNote}
       />
 
-      <NotePreview note={state.selectedNote} />
+      <NotePreview
+        selectedNote={state.selectedNote}
+      />
 
     </section>
   );

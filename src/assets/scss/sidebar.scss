@@ -1,43 +1,60 @@
 .sidebar {
-  border-right: 1px solid #dedede;
+  border-right: 1px solid $border-color;
   width: 275px;
   transition: all .5s;
   position: relative;
 
-  .header, .footer {
+  .header {
     position: relative;
     display: flex;
-    padding: 20px;
-  }
+    padding: 10px;
+    border-bottom: 1px solid $border-color;
+    justify-content: flex-end;
 
-  .header {
-    border-bottom: 1px solid #dedede;
+    .note-option {
+      width: 22px;
+      height: 22px;
+      line-height: 22px;
+      border-radius: 50%;
+      background: white;
+      border-color: $border-color !important;
+      padding: 0;
+      margin-left: 4px;
 
-    .collapse-btn {
-      position: absolute;
-      left: -20px;
-      top: 0;
-      bottom: 0;
-      margin: auto;
+      &:hover {
+        background: $border-color;
+      }
+
+      span {
+        color: black;
+      }
+
+      &.create-button {
+        transform: rotate(45deg);
+        background: rgba(0, 255, 0, 0.2);
+
+        &:hover {
+          background: rgba(0, 255, 0, 0.4);
+        }
+      }
     }
 
-  }
+    input {
+      width: calc(100% - 52px);
+      height: 22px;
+      border-color: #efefef;
 
-  .footer {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    border-top: 1px solid #dedede;
+      //&:focus {
+      //  width: calc(100% - 40px);
+      //  border-radius: 4px;
+      //  padding: 5px 6px;
+      //}
+    }
+
   }
 
   &.collapsed {
-    width: 0;
-    transition: all .5s;
-
-    .header, .footer, .note {
-      display: none;
-    }
+    margin-left: -275px;
   }
 
 }

@@ -1,16 +1,11 @@
 import { v4 as uuidv4 } from 'uuid';
+import Storage from '../../services/storage';
 
-const initialNotes = [
+const initialNotes = Storage.getItem('notes') || [
   {
     id: '1',
     title: 'Golang',
-    content: 'Go (incorrectly known as Golang,[14]) is a statically typed, compiled programming language designed at Google[15] by Robert Griesemer, Rob Pike, and Ken Thompson.[12] Go is syntactically similar to C, but with memory safety, garbage collection, structural typing,[6] and CSP-style concurrency.[16]\n' +
-      '\n' +
-      'There are two major implementations:\n' +
-      '\n' +
-      'Google\'s self-hosting[17] compiler toolchain targeting multiple operating systems, mobile devices,[18] and WebAssembly.[19]\n' +
-      'gccgo, a GCC frontend.[20][21]\n' +
-      'A third-party transpiler GopherJS[22] compiles Go to JavaScript for front-end web development.',
+    content: 'Go piler GopherJS[22] compiles Go to JavaScript for front-end web development.',
     updatedAt: Date.now(),
     createdAt: Date.now(),
   },
@@ -53,13 +48,23 @@ export default function note(state = initialState, action) {
     }
     case 'EDIT': {
       state.notes[state.notes.findIndex(note => note.id === action.note.id)] = action.note;
-      state.selectedNote = action.note;
-      return { ...state };
+      return {
+        ...state,
+        notes: [
+          ...state.notes,
+        ],
+      };
+    }
+    case 'DELETE': {
+      return {
+        ...state,
+        notes: state.notes.filter(note => note.id !== action.note.id),
+      };
     }
     case 'SELECT': {
       return {
         ...state,
-        selectedNote: state.notes.find(note => note.id === action.note.id),
+        selectedNote: state.notes.find(note => note.id === action.note?.id),
       };
     }
     default:

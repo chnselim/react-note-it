@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import NoteItem from './NoteItem';
@@ -6,19 +6,38 @@ import NoteItem from './NoteItem';
 export default function Sidebar(props) {
   const dispatch = useDispatch();
   const { notes, selectedNote } = props;
+  const [collapsed, setCollapsed] = useState(false);
+  const [hasNewNote, setHasNewNote] = useState(false);
   const [searchText, setSearchText] = useState('');
+
+  useEffect(() => {
+    if (notes.length > 0) {
+      dispatch({ type: 'SELECT', note: notes[0] });
+      // document.getElementById('activeInputTitle').focus();
+    } else {
+      dispatch({ type: 'SELECT', note: null });
+    }
+    setHasNewNote(false);
+  }, [hasNewNote]);
 
   function createNewNote() {
     dispatch({ type: 'ADD' });
-    dispatch({ type: 'SELECT', note: notes[0] }); // todo wtf ?
+    setHasNewNote(true);
   }
 
   function changeSelectedNote(note) {
     dispatch({ type: 'SELECT', note: note });
   }
 
+  function deleteNote(note) {
+    dispatch({ type: 'DELETE', note: note });
+    if (selectedNote.id === note.id) {
+      setHasNewNote(true);
+    }
+  }
+
   return (
-    <div className='sidebar'>
+    <div className={`sidebar${collapsed ? ' collapsed' : ''}`}>
 
       <div className='header'>
         <input
@@ -26,6 +45,18 @@ export default function Sidebar(props) {
           placeholder='Search'
           onKeyUp={(e) => setSearchText(e.target.value)}
         />
+        <button
+          className='btn btn-sm note-option create-button'
+          onClick={createNewNote}
+        >
+          <span className='lnr lnr-cross' />
+        </button>
+        <button
+          className='btn btn-sm note-option collapse-button'
+          onClick={() => setCollapsed(!collapsed)}
+        >
+          <span className={`lnr lnr-arrow-${collapsed ? 'right' : 'left'}`} />
+        </button>
       </div>
 
       {
@@ -38,18 +69,11 @@ export default function Sidebar(props) {
                 item={note}
                 isActive={note.id === selectedNote?.id}
                 handleOnNoteClick={() => changeSelectedNote(note)}
+                handleOnNoteDelete={() => deleteNote(note)}
               />
             );
           })
       }
-
-      <div className='footer'>
-        <button
-          className='btn btn-sm w-100'
-          onClick={createNewNote}
-        >Create New Note
-        </button>
-      </div>
 
     </div>
   );
