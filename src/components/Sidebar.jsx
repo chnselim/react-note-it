@@ -13,7 +13,7 @@ export default function Sidebar(props) {
   useEffect(() => {
     if (notes.length > 0) {
       dispatch({ type: 'SELECT', note: notes[0] });
-      // document.getElementById('activeInputTitle').focus();
+      setTimeout(() => document.getElementById('activeInputTitle').focus());
     } else {
       dispatch({ type: 'SELECT', note: null });
     }
@@ -51,29 +51,31 @@ export default function Sidebar(props) {
         >
           <span className='lnr lnr-cross' />
         </button>
-        <button
-          className='btn btn-sm note-option collapse-button'
-          onClick={() => setCollapsed(!collapsed)}
-        >
-          <span className={`lnr lnr-arrow-${collapsed ? 'right' : 'left'}`} />
-        </button>
+        {/* <button */}
+        {/*  className='btn btn-sm note-option collapse-button' */}
+        {/*  onClick={() => setCollapsed(!collapsed)} */}
+        {/* > */}
+        {/*  <span className={`lnr lnr-arrow-${collapsed ? 'right' : 'left'}`} /> */}
+        {/* </button> */}
       </div>
 
-      {
-        notes
-          .filter(note => note.title.toLowerCase().includes(searchText.toLowerCase()))
-          .map(note => {
-            return (
-              <NoteItem
-                key={note.id}
-                item={note}
-                isActive={note.id === selectedNote?.id}
-                handleOnNoteClick={() => changeSelectedNote(note)}
-                handleOnNoteDelete={() => deleteNote(note)}
-              />
-            );
-          })
-      }
+      <div className='scrollY min-43'>
+        {
+          notes
+            .filter(note => note.title.toLowerCase().includes(searchText.toLowerCase()))
+            .map(note => {
+              return (
+                <NoteItem
+                  key={note.id}
+                  item={note}
+                  isActive={note.id === selectedNote?.id}
+                  handleOnNoteClick={() => changeSelectedNote(note)}
+                  handleOnNoteDelete={() => deleteNote(note)}
+                />
+              );
+            })
+        }
+      </div>
 
     </div>
   );

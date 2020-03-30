@@ -95,5 +95,10 @@ section {
 
 .scrollY {
   overflow-y: scroll;
-  height: calc(100% - 25px);
+  height: 100%;
+
+  &.min-43 {
+    height: calc(100% - 43px);
+  }
+
 }
